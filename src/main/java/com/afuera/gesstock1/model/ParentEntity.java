@@ -1,12 +1,10 @@
-package com.afuera.gesttock1.demo;
+package com.afuera.gesstock1.model;
 
 import java.io.Serializable;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -17,9 +15,9 @@ public class ParentEntity implements Serializable {
 	private static final long serialVersionUID = -1933847309458909903L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//TODO generar ID automáticamente de manera incremental
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	
 	private Long id;
 
 	public Long getId() {

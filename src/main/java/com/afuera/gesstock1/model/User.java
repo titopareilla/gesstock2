@@ -1,4 +1,4 @@
-package com.afuera.gesttock1.demo;
+package com.afuera.gesstock1.model;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -13,15 +13,16 @@ public class User extends ParentEntity {
 
 	private static final long serialVersionUID = -5014387200981046050L;
 
-	@Column(name = "", nullable=false, length=30)
+	@Column(name = "name", nullable=false, length=30)
 	private String name;
-	@Column(name = "", nullable=false, length=30)
+	
+	@Column(name = "surname", nullable=false, length=30)
 	private String surname;
 	
-	@Column(name = "", nullable=true, length=15)
+	@Column(name = "phone", nullable=true, length=15)
 	private String phone;
 	
-	@Column(name = "", nullable=true, length=255)
+	@Column(name = "address",   nullable=true, length=255)
 	private String address;
 
 	public String getName() {
