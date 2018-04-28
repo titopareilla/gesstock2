@@ -1,6 +1,7 @@
 package com.afuera.gesstock1.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,12 +44,28 @@ public class UserController {
 		return new RestResponse(HttpStatus.OK.value(), "Operación exitosa");
 	}
 	
+	@RequestMapping(value = "/getUsers", method = RequestMethod.GET)
+	public List<User> getUsers() {
+		return userService.findAll();
+	}
+	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public void  deleteUser(@RequestBody String userJson) throws Exception {
+		
+		this.mapper = new ObjectMapper();
+		User user = this.mapper.readValue(userJson, User.class);
+		if  (user.getId() == null) 
+			throw new Exception("El id está nulo"); 
+
+		this.userService.deleteUser(user.getId());
+		
+	}
 
 	private boolean validate(User user) {
 		boolean isValid = true;
 
 		//TODO no estamos comprobando el ID porque se supone que tenemos que auto-generarlo
-		if  (user.getName() == null || user.getName() == "") 
+		if  (user.getName() == null  || user.getName() == "") 
 			isValid = false;
 		 else if (user.getSurname() == null || user.getName() == "") 
 			isValid = false;

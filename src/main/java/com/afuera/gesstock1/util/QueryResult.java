@@ -2,7 +2,7 @@ package com.afuera.gesstock1.util;
 
 import java.util.List;
 
-public class QueuryResult {
+public class QueryResult {
 
 	private int totalRegistros;
 	private List<Object> list;
