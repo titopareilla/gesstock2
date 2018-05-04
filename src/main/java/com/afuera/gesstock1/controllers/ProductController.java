@@ -1,6 +1,7 @@
 package com.afuera.gesstock1.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,11 +26,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ProductController {
 
     @Autowired
-	protected ProductService productService;
-	
+	protected ProductService productService;	
 	protected ObjectMapper mapper;
 	
-	//Método de guardar y actualizar
+	
+	/**
+	 * Crea y actualiza productos
+	 * 
+	 */
 	@RequestMapping(value = "/saveOrUpdateProduct", method = RequestMethod.POST)
 	public RestResponse saveOrUpdate(@RequestBody String productJson)
 			throws JsonParseException, JsonMappingException, IOException {
@@ -45,15 +49,48 @@ public class ProductController {
 		return new RestResponse(HttpStatus.OK.value(), "Operación exitosa");
 	}
 
+	
+	/**
+	 * json con una búsqueda general de la tabla productos
+	 * 
+	 */
+	@RequestMapping(value = "/getProducts", method = RequestMethod.GET)
+	public List<Product> getProducts() {
+		return productService.findAll();
+	}
+	
+	
+	/**
+	 *  borra el producto con el id correspondiente que se le pasa en el json
+	 *  
+	 */
+	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
+	public void  deleteProduct(@RequestBody String productJson) throws Exception {
+		
+		this.mapper = new ObjectMapper();
+		Product product = this.mapper.readValue(productJson, Product.class);
+
+		this.productService.deleteProduct(product.getIdProducto());
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Validación de campos del tipo Product que se le pasan en el json
+	 * @param product
+	 * @return
+	 */
 	private boolean validate(Product product) {
 		boolean isValid = true;
 	
-		//TODO no estamos comprobando el ID porque se supone que tenemos que auto-generarlo
 		if  (product.getNombreProducto() == null  || product.getNombreProducto() == "") 
 			isValid = false;
 		 else if (product.getRefProducto() == null || product.getRefProducto() == "") 
 			isValid = false;
 	
 		return isValid;
-	}
+	}	
+	
+	
 }

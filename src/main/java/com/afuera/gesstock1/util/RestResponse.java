@@ -1,8 +1,14 @@
 package com.afuera.gesstock1.util;
 
+/**
+ * 
+ * Respuesta y código de respuesta al front
+ *
+ */
 public class RestResponse {
-	private Integer responseCode;
+
 	
+	private Integer responseCode;
 	private String message;
 	
 	public RestResponse(Integer responseCode) {

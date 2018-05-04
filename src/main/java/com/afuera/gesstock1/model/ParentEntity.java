@@ -7,7 +7,18 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
+/**
+ * 
+ * 
+ * 
+ * 
+ * TODO: esta clase en un ppio no se utiliza YA
+ * 
+ * 
+ * 
+ * @author Alberto
+ *
+ */
 @MappedSuperclass
 @Access(AccessType.FIELD)
 public class ParentEntity implements Serializable {

@@ -19,8 +19,7 @@ public class Product implements Serializable{
 	private static final long serialVersionUID = 9188255651608086339L;
 
 	@Id
-	//TODO generar ID automáticamente de manera incremental
-	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_producto", unique = true, nullable = false)
 	private int idProducto;
 	
@@ -33,8 +32,8 @@ public class Product implements Serializable{
 	@Column(name = "desc_producto", nullable=true, length=255)
 	private String descProducto;
 	
-	@Column(name = "id_img_ppal",   nullable=true)
-	private int idImgPpal;
+	@Column(name = "img_ppal",   nullable=true, length=255)
+	private String imgPpal;
 	
 	@Column(name = "stock", nullable = true)
 	private double stock;
@@ -73,12 +72,12 @@ public class Product implements Serializable{
 		this.descProducto = descProducto;
 	}
 
-	public int getIdImgPpal() {
-		return idImgPpal;
+	public String getImgPpal() {
+		return imgPpal;
 	}
 
-	public void setIdImgPpal(int idImgPpal) {
-		this.idImgPpal = idImgPpal;
+	public void setImgPpal(String imgPpal) {
+		this.imgPpal = imgPpal;
 	}
 
 	public double getStock() {
